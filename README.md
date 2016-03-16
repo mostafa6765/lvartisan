@@ -2,6 +2,8 @@
 
 ## Laravel artisan command for creating view
 
+This is just initial work on dev mode, the code structure may change and some extra option will be added soon.
+
 ### Require it
 
 ```
