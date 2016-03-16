@@ -1,0 +1,21 @@
+{
+    "name": "monirz/lvartisan",
+    "description": "Laravel view artisan command",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "monirz",
+            "email": "monir.smith@gmail.com"
+        }
+    ],
+
+    "autoload": {
+     "psr-4": {
+       "monirz\\lvartisan\\": "src/"  
+    }
+   },
+    "minimum-stability": "dev",
+    "require": {
+      "illuminate/support:" "~5"
+   }
+}
