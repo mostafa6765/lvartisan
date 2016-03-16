@@ -11,14 +11,14 @@ class ViewCommand extends Command {
 	 *
 	 * @var string
 	 */
-	protected $name = 'make:view {user?}';
+	protected $name = 'make:view {views?}';
 
 	/**
 	 * The console command description.
 	 *
 	 * @var string
 	 */
-	protected $description = 'Creates a view ';
+	protected $description = 'Create a view.';
 
 	/**
 	 * Create a new command instance.
@@ -39,7 +39,7 @@ class ViewCommand extends Command {
 	 */
 	public function fire()
 	{
-        $input =  $this->argument('user');
+        $input =  $this->argument('views');
 		/**
 		 * Check if any slash in input
 		 */
@@ -85,7 +85,7 @@ class ViewCommand extends Command {
 	protected function getArguments()
 	{
 		return [
-			['user', InputArgument::OPTIONAL, 'An example argument.'],
+			['views', InputArgument::OPTIONAL, 'Name of the view'],
 		];
 	}
 
