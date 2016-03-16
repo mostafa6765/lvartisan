@@ -12,14 +12,6 @@ use Illuminate\Support\ServiceProvider;
    ];
 
    public function register (){
-	   
-	   $this->app->bind('todo', function(){
-		   
-		   return new Todo;
-		   
-		   });
-
-
 
 	   $this->commands($this->commands);
 
@@ -27,9 +19,6 @@ use Illuminate\Support\ServiceProvider;
 	   
   public function boot() {
 	  
-	  
-	  require __DIR__ . '/Http/routes.php';
-
 	  require __DIR__ . '/Console/Kernel.php';
 	  require __DIR__ . '/Console/Commands/ViewCommand.php';
 
