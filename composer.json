@@ -1,6 +1,7 @@
 {
     "name": "monirz/lvartisan",
     "description": "Laravel view artisan command",
+    "keywords": [ "view", "artisan",   "laravel"],
     "license": "MIT",
     "minimum-stability": "dev",
     "prefer-stable": true,
