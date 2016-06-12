@@ -16,10 +16,10 @@ This is just initial work on dev mode, the code structure may change and some ex
 
 
 ```
- monirz\lvartisan\LvartisanServiceProvider 
+ monirz\lvartisan\LvartisanServiceProvider::class 
 
 ```
-Viola, You are done!
+Voila, You are done!
 
 
 
