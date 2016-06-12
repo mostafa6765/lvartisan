@@ -3,6 +3,7 @@
     "description": "Laravel view artisan command",
     "license": "MIT",
     "minimum-stability": "dev",
+     "prefer-stable": true
     "authors": [
         {
             "name": "monirz",
