@@ -38,3 +38,7 @@ Voila, You are done!
 
 With this command the directory name is not provided so the index.blade.php file will be created in root directory which is views.
 
+---
+![ezgif com-video-to-gif](https://cloud.githubusercontent.com/assets/17185462/23724863/8d00cf4c-0478-11e7-8f92-9b17e27e7cda.gif)
+
+
