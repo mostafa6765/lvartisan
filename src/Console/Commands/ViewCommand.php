@@ -1,104 +1,82 @@
-<?php namespace monirz\lvartisan\Console\Commands;
+<?php
+
+namespace monirz\lvartisan\Console\Commands;
 
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 
-class ViewCommand extends Command {
+class ViewCommand extends Command
+{
+    /**
+     * The console command name.
+     *
+     * @var string
+     */
+    protected $name = 'make:view {views?}';
 
-	/**
-	 * The console command name.
-	 *
-	 * @var string
-	 */
-	protected $name = 'make:view {views?}';
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Create a view.';
 
-	/**
-	 * The console command description.
-	 *
-	 * @var string
-	 */
-	protected $description = 'Create a view.';
+    /**
+     * Create a new command instance.
+     */
+    protected $drip;
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
-	/**
-	 * Create a new command instance.
-	 *
-	 * @return void
-	 */
+    /**
+     * Execute the console command.
+     *
+     * @return mixed
+     */
+    public function fire()
+    {
+        $input = $this->argument('views');
+        /**
+         * Check if any slash in input.
+         */
+        $file = config('view.paths.0').'/'.$input.'.blade.php';
+        $dirName = dirname($file);
+        if (!is_dir($dirName)) {
+            mkdir($dirName, 0755, true);
+        }
 
-	protected $drip;
-	public function __construct()
-	{
-		parent::__construct();
-	}
+        if (!file_exists($file)) {
+            fopen($file, 'w');
+            $this->comment('<info>Created view : '.$input.'.blade.php</info>');
+        } else {
+            $this->comment('<error>'.$input.'.blade.php is already exists</error>');
+        }
+    }
 
-	/**
-	 * Execute the console command.
-	 *
-	 * @return mixed
-	 */
-	public function fire()
-	{
-        $input =  $this->argument('views');
-		/**
-		 * Check if any slash in input
-		 */
-		if (strpos($input, '/')){
-			$arr = explode('/', $input);
+    /**
+     * Get the console command arguments.
+     *
+     * @return array
+     */
+    protected function getArguments()
+    {
+        return [
+            ['views', InputArgument::OPTIONAL, 'Name of the view'],
+        ];
+    }
 
-			$dir = 'resources/views/' . $arr[0];
-            // check if the directory doesn't exist then create the directory
-			if (!file_exists($dir)) {
-				mkdir('resources/views/'. $arr[0]);
-				$this->comment("$arr[0] directory created");
-			}
-
-            $file = 'resources/views/'. $arr[0] .'/'. $arr[1] . '.blade.php';
-			if(! file_exists($file)){
-				fopen('resources/views/'. $arr[0] .'/'. $arr[1] . '.blade.php', 'w');
-				$this->comment("File created $arr[1].blade.php ");
-
-			} else {
-				$this->error(" $arr[1].blade.php  File already exists in views/$arr[0]");
-			}
-
-		}  else {
-
-			$file = 'resources/views/'. $input. '.blade.php';
-			if (! file_exists($file)) {
-				fopen('resources/views/' . $input . '.blade.php', 'w');
-				$this->comment(" view created");
-				$this->comment("$file");
-			}else {
-				$this->error('File already exists');
-				print "Error: $file File already exists\n";
-			}
-		}
-
-	}
-
-	/**
-	 * Get the console command arguments.
-	 *
-	 * @return array
-	 */
-	protected function getArguments()
-	{
-		return [
-			['views', InputArgument::OPTIONAL, 'Name of the view'],
-		];
-	}
-
-	/**
-	 * Get the console command options.
-	 *
-	 * @return array
-	 */
-	protected function getOptions()
-	{
-		return [
-			['example', null, InputOption::VALUE_OPTIONAL, 'An example option.', null],
-		];
-	}
-
+    /**
+     * Get the console command options.
+     *
+     * @return array
+     */
+    protected function getOptions()
+    {
+        return [
+            ['example', null, InputOption::VALUE_OPTIONAL, 'An example option.', null],
+        ];
+    }
 }
